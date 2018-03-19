@@ -1,11 +1,13 @@
 var express = require('express')
 var http = require('http')
 var path = require('path')
-var reload = require('reload')
 var bodyParser = require('body-parser')
 var logger = require('morgan')
 var auth = require('./modules/auth.js')
 var app = express()
+var mid = require('node-machine-id')
+
+console.log(mid.machineIdSync())
 
 var publicDir = path.join(__dirname, 'public')
 
@@ -30,7 +32,6 @@ app.get('/test', function(req,res){
 var server = http.createServer(app)
 auth.test()
 // Reload code here
-reload(app);
 
 server.listen(app.get('port'), function () {
     console.log('Web server listening on port ' + app.get('port'))
