@@ -2,7 +2,10 @@
   "name": "kioskapiserver",
   "version": "1.0.0",
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "path": "^0.12.7"
   },
   "main": "index.js",
   "devDependencies": {},
