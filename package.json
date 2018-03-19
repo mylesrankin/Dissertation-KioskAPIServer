@@ -19,5 +19,13 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mylesrankin/Dissertation-KioskAPIServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mylesrankin/Dissertation-KioskAPIServer/issues"
+  },
+  "homepage": "https://github.com/mylesrankin/Dissertation-KioskAPIServer#readme",
   "description": ""
 }
