@@ -4,15 +4,16 @@ var path = require('path')
 var bodyParser = require('body-parser')
 var logger = require('morgan')
 var app = express()
+var screen = require('./modules/screen.js')
 
 //var auth = require('./modules/auth.js')
 
 // MySQL DB Details
 const dbData = {
     host: "37.122.214.88",
-    user: "disso-whaj-u-172240",
-    password: "T3^jtw/9s",
-    database: "disso-whaj-u-172240"
+    user: "kiosk-3a9r-u-175546",
+    password: "T/hWJGF!Y",
+    database: "kiosk-3a9r-u-175546"
 }
 
 var publicDir = path.join(__dirname, 'public')
@@ -32,6 +33,12 @@ app.get('/test', function(req,res){
             title: 'test',
             content: 'more testing'
         }
+    })
+})
+
+app.get('/screen/adverts/:id', function(req,res){
+    screen.getScreenAdverts(dbData, req.params.id, function(result){
+        res.json(result)
     })
 })
 

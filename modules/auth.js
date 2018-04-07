@@ -3,7 +3,7 @@ var db = require("./db")
 exports.checkScreenAuth = function(conDetails, req, callback){
 	console.log(req.headers.authtoken);
 	if(req.headers.authtoken === undefined){
-		let err = {status:'AuthError: Auth-token missing'};
+		let err = {status:'AuthError: HardwareID missing'};
 		return;
 	}else{
 		db.connect(conDetails, function(err, data){
@@ -43,7 +43,7 @@ exports.checkUserAuth = function(conDetails, req, callback){
                 callback(err);
                 return;
             }
-            var sql = 'SELECT * FROM Authentications WHERE authtoken ="' + req.headers.authtoken + '"';
+            var sql = 'SELECT * FROM Authentications WHERE authtoken ="' + req.headers.authToken + '"';
             data.query(sql, function(err, result){
                 if(err){
                     callback(err);
@@ -51,10 +51,10 @@ exports.checkUserAuth = function(conDetails, req, callback){
                 }
 
                 if(result && result.length > 0){
-                    callback(null, {status:"success"});
+                    callback(null, {status:"True"});
                 }
                 else{
-                    callback(null, {status:"fail"})
+                    callback(null, {status:"False"})
                 }
 
             })
