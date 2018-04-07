@@ -3,11 +3,17 @@ var http = require('http')
 var path = require('path')
 var bodyParser = require('body-parser')
 var logger = require('morgan')
-var auth = require('./modules/auth.js')
 var app = express()
-var mid = require('node-machine-id')
 
-console.log(mid.machineIdSync())
+//var auth = require('./modules/auth.js')
+
+// MySQL DB Details
+const dbData = {
+    host: "37.122.214.88",
+    user: "disso-whaj-u-172240",
+    password: "T3^jtw/9s",
+    database: "disso-whaj-u-172240"
+}
 
 var publicDir = path.join(__dirname, 'public')
 
@@ -30,7 +36,7 @@ app.get('/test', function(req,res){
 })
 
 var server = http.createServer(app)
-auth.test()
+//auth.test()
 // Reload code here
 
 server.listen(app.get('port'), function () {
