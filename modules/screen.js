@@ -3,18 +3,20 @@ var db = require("./db")
 exports.getScreenAdverts = function(condetails, hardwareID, callback){
     db.connect(condetails, function(err,data){
         var sql = 'SELECT * FROM Screen_Groups WHERE ID = (SELECT ID FROM Screens WHERE Hardware_ID = "' + hardwareID + '")';
+        console.log(sql)
         console.log('Getting screen adverts of screen ID: ' + hardwareID);
         data.query(sql, function(err, result){
-            console.log(result[0].Adverts)
-
             if (err) throw err;
+            console.log(result)
+			console.log("-----------------")
             if(result.length>0){
                 var sql = 'SELECT * FROM Adverts WHERE ID IN ' + result[0].Adverts
                 console.log(sql)
                 data.query(sql, function(err, result){
                     console.log(result)
+                    callback(result)
                 })
-                callback(result);
+
             }else{
                 callback(false);
             }
@@ -22,28 +24,24 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
     });
 }
 
-
-// OLD METHODS BELOW
-exports.create = function(conDetails, req, callback){
-
+exports.createAdvert = function(conDetails, req, callback){
 	db.connect(conDetails, function(err, data){
 		if(err){
 			callback(err);
 			return;
 		}
-
-		var user = {
-			username: req.body['username'],
-			password: req.body['password'],
-			email: req.body['email']
+		var advert = {
+			username: req.body['ID'],
+			password: req.body['Owner'],
+			email: req.body['Content']
 		};
-
-		data.query('INSERT INTO Users SET ?', user, function(err,result){
-			callback(err,user);
+		data.query('INSERT INTO Adverts SET ?', advert, function(err,result){
+			callback(err,advert);
 		});
 	});
 };
 
+// OLD METHODS BELOW
 exports.destroy = function(conDetails, req, callback){
 	if(err){
 		callback(err);
