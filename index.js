@@ -25,24 +25,17 @@ const dbData = {
 
 var publicDir = path.join(__dirname, 'public')
 
-var allowCrossDomain = function(req, res, next) {
-    if ('OPTIONS' == req.method) {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Auth_Token');
-        res.send(200);
-    }
-    else {
-        next();
-    }
-};
 
 app.set('port', process.env.PORT || 3000)
-app.use(logger('dev'))
-app.use(bodyParser.json()) // Parses json, multi-part (file), url-encoded
-app.use(allowCrossDomain)
 
-app.get('/', function (req, res) {e
+app.use(bodyParser.json()) // Parses json, multi-part (file), url-encoded
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, hardwareid, Auth_Token");
+    next();
+});
+
+app.get('/', function (req, res) {
     res.send('API Server Aliveggg');
 })
 
@@ -56,10 +49,7 @@ app.get('/test', function(req,res){
     })
 })
 
-
-
-
-// Screen - Advert Methods
+// Screen - Advert Methods t
 
 /** Gets content for a given screen by request body hardware id **/
 app.get('/screen/adverts', function(req,res){
@@ -70,13 +60,13 @@ app.get('/screen/adverts', function(req,res){
             res.end("Error: Invalid or non-existent Hardware ID provided")
         }else{
             res.status(200)
-            res.json(result) //
+            res.json(result) // change
         }
     })
 
 })
 
-
+///
 /** Route for creating an Advert on given Advert Object in Request Body **/
  app.post('/screen/adverts', function(req,res) {
     if(!req.body['username']){
