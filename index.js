@@ -4,6 +4,7 @@ var http = require('http')
 var path = require('path')
 var bodyParser = require('body-parser')
 var sha256 = require('sha256')
+var Printer = require('node-printer')
 
 // Custom modules by Myles Rankin
 var screen = require('./modules/screen.js')
@@ -31,7 +32,7 @@ app.set('port', process.env.PORT || 3000)
 app.use(bodyParser.json()) // Parses json, multi-part (file), url-encoded
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, hardwareid, Auth_Token");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, content-type, Data-Type, Accept, hardwareid, Auth_Token");
     next();
 });
 
@@ -49,7 +50,7 @@ app.get('/test', function(req,res){
     })
 })
 
-// Screen - Advert Methods t
+// Screen/Advert Methods
 
 /** Gets content for a given screen by request body hardware id **/
 app.get('/screen/adverts', function(req,res){
@@ -60,7 +61,7 @@ app.get('/screen/adverts', function(req,res){
             res.end("Error: Invalid or non-existent Hardware ID provided")
         }else{
             res.status(200)
-            res.json(result) // change
+            res.json(result)
         }
     })
 
@@ -135,7 +136,7 @@ app.put('/screen/adverts/:advertid', function(req, res){
                                 }
                             })
                         }else{
-                            console.log("SoftError: No advert obj?")
+                            console.log("Console Error - No advert obj provided?")
                         }
                     }else{
                         res.status(400)
@@ -152,6 +153,7 @@ app.put('/screen/adverts/:advertid', function(req, res){
 
 /** Route for creating a new user, checks if exists before calling user.create **/
 app.post('/user', function(req, res){
+    console.log(req.headers)
     db.connect(dbData, function(err,data){
     var sql = 'SELECT * FROM Users WHERE username = "' + req.body['username'] + '"';
     console.log(req.body)
@@ -159,13 +161,12 @@ app.post('/user', function(req, res){
         data.query(sql, function(err, result){
             if (err){
                 res.status(400)
-                res.end('Error as occured when querying')
+                res.end('Error during query')
             }
             if(result.length>0){
                 // User exists
-                console.log("User exists");
                 res.status(400);
-                res.end("Error: User already exists");
+                res.end("Error - User already exists");
 
             }else{
                 // User does not exist
@@ -177,15 +178,13 @@ app.post('/user', function(req, res){
                     Email: req.body['email'],
                     Salt: salt
                 }
-                console.log(userObj.password)
                 user.create(dbData, userObj, function(err, data){
-                    console.log("Created user: "+ req.body['username'])
                     if(err){
                         res.status(400);
-                        res.end("Error: "+err);
+                        res.end("Error - "+err);
                     }
                     res.status(201);
-                    res.end("Success: User created");
+                    res.end("Success - User created");
                 });
             }
         });
@@ -195,6 +194,52 @@ app.post('/user', function(req, res){
         res.end("Error: One or more fields are empty")
     }
     });
+})
+
+app.post('/user/login', function(req,res){
+    var token = new String(user+(Date.now() / 1000 | 0)).hashCode();
+    db.connect(dbData, function(err, data){
+        var sql = 'SELECT * FROM Users WHERE username = "' + req.body['username'] + '"';
+        data.query(sql, function(err, result){
+            if(result.length > 0){
+                // User does exist
+                console.log(result)
+                console.log(sha256(req.body['password']+result[0].Salt))
+                if(sha256(req.body['password']+result[0].Salt) == result[0].Password){
+                    // authorise
+                    auth.createAuth(dbData,result[0].ID,token); // Store authtoken
+                    res.send(JSON.stringify({ // Send auth details for client to use
+                        'notification' : 'Login Successful',
+                        'authtoken' : token,
+                        'Username' : result[0].Username,
+                        'ID': result[0].ID
+                    }));
+                    res.status(201);
+                    res.end("Authorised");
+                    console.log("Authorised user: " + result[0].Username);
+                }else{
+                    // Do not authorise
+                    console.log("No auth");
+                    res.status(400);
+                    res.end("Wrong password");
+                }
+            }else{
+                // User does not exist
+                res.status(400);
+                res.end("User does not exist");
+            }
+        });
+        data.end();
+    });
+})
+
+app.post('/user/logout', function(req,res){
+
+})
+
+app.post('/echo', function(req,res){
+    console.log(JSON.stringify(req.body))
+    res.json(req.body)
 })
 
 /** Misc **/

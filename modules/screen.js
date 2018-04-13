@@ -16,11 +16,12 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
                     console.log(result)
                     callback(result)
                 })
-
+                data.end()
             }else{
                 callback(false);
             }
         });
+
     });
 }
 
@@ -38,6 +39,7 @@ exports.createAdvert = function(conDetails, req, callback){
 		data.query('INSERT INTO Adverts SET ?', advert, function(err,result){
 			callback(err,advert);
 		});
+        data.end()
 	});
 };
 
@@ -52,37 +54,8 @@ exports.destroy = function(conDetails, req, callback){
 	data.query('DELETE FROM Users WHERE username = ?', username, function(err, result){
 		callback(err,user);
 	});
+    data.end()
 };
 
-exports.doesUserExist = function(conDetails, req, callback){
-	db.connect(conDetails, function(err,data){
-		var sql = 'SELECT * FROM Users WHERE username = "' + req.body['username'] + '"';
-		console.log(req.body['username']);
-		data.query(sql, function(err, result){
-			if (err) throw err;
-			if(result.length>0){
-				return callback(true);
-			}else{
-				return callback(false);
-			}
-		});
-	});
-}
 
-exports.getUsers = function(condetails, callback){
-	db.connect(condetails, function(err, data){
-		if(err){
-			console.log(err)
-			return;
-		}
-		var sql = 'SELECT * FROM Users';
-		data.query(sql, function(err, result){
-			if(err){
-				callback(err)
-			}else{
-				callback(null, result)
-			}
-		});
-	})
-}
 
