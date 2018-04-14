@@ -25,6 +25,61 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
     });
 }
 
+
+exports.getScreens = function(condetails, callback){
+    db.connect(condetails, function(err,data){
+        var sql = 'SELECT * FROM Screens';
+        console.log(sql)
+        data.query(sql, function(err, result){
+            console.log(result.length)
+            if (err){
+            	console.log(err)
+				callback({"status":"unknown-error"})
+            }else{
+
+            	if(result.length >0) {
+                    callback(result);
+                }else{
+            		callback({"status":"invalid-user"})
+				}
+            }
+        });
+        data.end()
+
+    });
+}
+
+exports.getScreenGroupsByUser = function(condetails, Owner, callback){
+    db.connect(condetails, function(err,data){
+        data.query('SELECT * FROM Screen_Groups WHERE Owners = ?', Owner, function(err, result){
+            if (err){
+                console.log(err)
+                callback({"notification":"An error occured"})
+            }else{
+                callback(result);
+            }
+        });
+        data.end()
+
+    });
+}
+
+
+exports.getScreensByUser = function(condetails, Owner, callback){
+    db.connect(condetails, function(err,data){
+        data.query('SELECT * FROM Screens WHERE Owner = ?', Owner, function(err, result){
+            if (err){
+                console.log(err)
+                callback({"notification":"An error occured"})
+            }else{
+                callback(result);
+            }
+        });
+        data.end()
+
+    });
+}
+
 exports.createAdvert = function(conDetails, req, callback){
 	db.connect(conDetails, function(err, data){
 		if(err){

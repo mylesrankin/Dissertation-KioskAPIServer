@@ -32,7 +32,8 @@ app.set('port', process.env.PORT || 3000)
 app.use(bodyParser.json()) // Parses json, multi-part (file), url-encoded
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, content-type, Data-Type, Accept, hardwareid, Auth_Token");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, content-type, Data-Type, Accept, hardwareid, authtoken");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
     next();
 });
 
@@ -52,6 +53,33 @@ app.get('/test', function(req,res){
 
 // Screen/Advert Methods
 
+/** Gets data of all screens on db **/
+app.get('/screens', function(req,res){
+    screen.getScreens(dbData, function(result){
+        console.log(result)
+        res.status(200)
+        res.json(result)
+    })
+})
+
+/** Gets data of all screens owned by a specific user by Owner**/
+app.get('/screens/user/:Owner', function(req,res){
+    screen.getScreensByUser(dbData,  req.params.Owner, function(result){
+        console.log(result)
+        res.status(200)
+        res.json(result)
+    })
+}) //
+
+/** Gets data of all screen groups owned by a specific user by Owner**/
+app.get('/screens/groups/user/:Owner', function(req,res){
+    screen.getScreenGroupsByUser(dbData,  req.params.Owner, function(result){
+        console.log(result)
+        res.status(200)
+        res.json(result)
+    })
+})
+
 /** Gets content for a given screen by request body hardware id **/
 app.get('/screen/adverts', function(req,res){
     var HID = req.headers['hardwareid']
@@ -67,7 +95,20 @@ app.get('/screen/adverts', function(req,res){
 
 })
 
-///
+/** Gets content for a given screen by request body hardware id **/
+app.get('/useradverts/:owner', function(req,res){
+    advert.getUsersAdverts(dbData, req.params.owner, function (err, result) {
+        if(result === false) {
+            res.status(400)
+            res.end("Error: No reviews for this user")
+        }else{
+            res.status(200)
+            res.json(result)
+        }
+    })
+
+}) //
+
 /** Route for creating an Advert on given Advert Object in Request Body **/
  app.post('/screen/adverts', function(req,res) {
     if(!req.body['username']){
@@ -147,6 +188,7 @@ app.put('/screen/adverts/:advertid', function(req, res){
         }
     })
 })
+
 
 
 // User methods
@@ -233,8 +275,17 @@ app.post('/user/login', function(req,res){
     });
 })
 
-app.post('/user/logout', function(req,res){
-
+app.delete('/user/logout', function(req,res){
+    console.log(req.headers['authtoken'])
+    if(req.headers['authtoken']){
+        auth.destroyAuth(dbData, req.headers['authtoken'])
+        res.status(200)
+        res.end("Logout Success")
+    }else{
+        res.status(400)
+        console.log('no authkey')
+        res.end('No authentication token provided to logout')
+    }
 })
 
 app.post('/echo', function(req,res){

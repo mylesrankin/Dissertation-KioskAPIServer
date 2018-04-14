@@ -79,26 +79,8 @@ exports.destroy = function(conDetails, id, callback){
 
 };
 
-/** Checks if drug has any reviews **/
-exports.doesDrugExist = function(conDetails, req, callback){
-    db.connect(conDetails, function(err,data){
-        var sql = 'SELECT * FROM Reviews WHERE drug_name = "' + req.body['drug'] + '"';
-        console.log(req.body['drug']);
-        data.query(sql, function(err, result){
-            if (err) throw err;
-            if(result.length>0){
-                // callback true if there are revivews for this drug
-                return callback(true);
-            }else{
-                return callback(false);
-            }
-        });
-        data.end();
-    });
-}
-
-/** Gets all reviews for all drugs in database **/
-exports.getAllReviews = function(condetails, callback){
+/** Gets all adverts for all drugs in database **/
+exports.getAllAdverts = function(condetails, callback){
     db.connect(condetails, function(err, data){
         if(err){
             console.log(err)
@@ -138,10 +120,10 @@ exports.getDrugReviews = function(condetails, drug, callback){
 }
 
 
-/** Get all the reviews of a user based on username provided **/
-exports.getUsersReviews = function(condetails, user, callback){
+/** Get all the adverts of a user based on username provided **/
+exports.getUsersAdverts = function(condetails, Owner, callback){
     db.connect(condetails, function(err, data){
-        var sql = 'SELECT * FROM Reviews WHERE review_owner = "' + user + '"'
+        var sql = 'SELECT * FROM Adverts WHERE Owner = "' + Owner + '"'
         data.query(sql, function(err, result){
             if(err){
                 console.log(err)
