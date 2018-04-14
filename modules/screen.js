@@ -64,6 +64,40 @@ exports.getScreenGroupsByUser = function(condetails, Owner, callback){
     });
 }
 
+/** Updates an advert based on advert ID and advert Object provided **/
+exports.updateScreenGroup = function(conDetails, groupid, groupObj, callback){
+    db.connect(conDetails, function(err, data){
+        if(err){
+            callback(err)
+            return;
+        }
+        data.query('UPDATE Screen_Groups SET ? WHERE ID = ' + groupid, groupObj, function(err, result){
+            console.log('Updated the advert: ' + groupid)
+            callback(err, result);
+        })
+        data.end();
+    })
+};
+
+/** Get a advert of a specific id  provided in params **/
+exports.getScreenGroupByID = function(condetails, groupid, callback){
+    console.log("Getting screengroup by id="+groupid)
+    db.connect(condetails, function(err, data){
+        var sql = 'SELECT * FROM Screen_Groups WHERE ID="' + groupid + '"'
+        data.query(sql, function(err, result){
+            if(err){
+                console.log(err)
+            }
+            if(result.length>0){
+                callback(null, result)
+            }else{
+                callback(null, false)
+            }
+        })
+        data.end();
+    })
+}
+
 
 exports.getScreensByUser = function(condetails, Owner, callback){
     db.connect(condetails, function(err,data){

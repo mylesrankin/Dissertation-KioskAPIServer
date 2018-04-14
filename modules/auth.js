@@ -34,13 +34,13 @@ exports.checkAuth = function(conDetails, req, callback){
 /** Matches a users request authentication with the targetid auth owner to ensure they are allowed do anything to it **/
 exports.matchUserAuth = function(conDetails, targetId, req, callback){
     console.log(req.headers.auth_token)
-    if(!req.headers.auth_token){
-        callback(null, {status: 'Auth_Token-missing'})
+    if(!req.headers.authtoken){
+        callback(null, {status: 'AuthToken-missing'})
     }else{
         db.connect(conDetails, function(err, data){
             var usr = req.headers.User_ID
-            console.log('Checking Auth_Token: '+req.headers.auth_token)
-            var sql = 'SELECT * FROM Authentications WHERE Auth_Token ="'+ req.headers.auth_token +'" AND User_ID = "'+ targetId +'"';
+            console.log('Checking Auth_Token: '+req.headers.authtoken)
+            var sql = 'SELECT * FROM Authentications WHERE Auth_Token ="'+ req.headers.authtoken +'" AND User_ID = "'+ targetId +'"';
             data.query(sql, function(err, result){
                 if(err){
                     console.log(err)

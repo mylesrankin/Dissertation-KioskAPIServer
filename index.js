@@ -189,6 +189,47 @@ app.put('/screen/adverts/:advertid', function(req, res){
     })
 })
 
+/** Route for updating screen group based on provided id param auth required, only the owner of the screen group can update it **/
+app.put('/screen/groups/:groupid', function(req, res){
+    console.log(req.body)
+    screen.getScreenGroupByID(dbData, req.params.groupid, function(err, result){
+        if(!result){
+            console.log("Error: screen group with id="+req.params.groupid+" does not exist")
+            res.status(400)
+            res.json({status: "Error: screen group with id="+req.params.groupid+" does not exist"})
+        }else{
+            console.log('Getting userid from advert owner: '+result[0].Owners)
+            user.getUserId(dbData, result[0].Owners, function(err, result){
+                auth.matchUserAuth(dbData, result[0].ID, req, function(err, result){
+                    console.log(result.status)
+                    if(result.status === 'user-authorised'){
+                        console.log('Incoming advert update data')
+                        if(req.body){
+                            console.log('Attempting update advert (id='+req.params.groupid+')')
+                            screen.updateScreenGroup(dbData, req.params.groupid, req.body, function(err, result){
+                                if(err){
+                                    res.status(400)
+                                    console.log(err)
+                                    res.json(err)
+                                }else{
+                                    console.log('Advert updated')
+                                    res.status(200)
+                                    res.json({status: 'Advert updated'})
+                                }
+                            })
+                        }else{
+                            console.log("Console Error - No advert obj provided?")
+                        }
+                    }else{
+                        res.status(400)
+                        res.json({status: 'user-unauthorised'})
+                    }
+                })
+            })
+        }
+    })
+})
+
 
 
 // User methods

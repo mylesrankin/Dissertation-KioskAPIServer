@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e4534183-191f-4096-92e5-5fff63fae977" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
-      <change beforePath="$PROJECT_DIR$/modules/advert.js" afterPath="$PROJECT_DIR$/modules/advert.js" />
+      <change beforePath="$PROJECT_DIR$/modules/auth.js" afterPath="$PROJECT_DIR$/modules/auth.js" />
       <change beforePath="$PROJECT_DIR$/modules/screen.js" afterPath="$PROJECT_DIR$/modules/screen.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,14 +17,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.26569563">
+    <splitter split-orientation="horizontal" split-proportion="0.49665073">
       <split-first>
         <leaf>
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="98" column="21" lean-forward="false" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
+                <state relative-caret-position="220">
+                  <caret line="199" column="14" lean-forward="false" selection-start-line="199" selection-start-column="14" selection-end-line="199" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -54,11 +54,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/modules/auth.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="796">
-                  <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="81" selection-end-column="54" />
+                <state relative-caret-position="354">
+                  <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -67,18 +67,18 @@
           <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/modules/user.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1893">
+                <state relative-caret-position="544">
                   <caret line="113" column="28" lean-forward="false" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="screen.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="screen.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/modules/screen.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+                <state relative-caret-position="357">
+                  <caret line="78" column="6" lean-forward="true" selection-start-line="78" selection-start-column="6" selection-end-line="78" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -87,8 +87,8 @@
           <file leaf-file-name="advert.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/modules/advert.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1258">
-                  <caret line="122" column="37" lean-forward="false" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+                <state relative-caret-position="187">
+                  <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="37" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
@@ -122,10 +122,10 @@
         <option value="$PROJECT_DIR$/modules/user_authentication.js" />
         <option value="$PROJECT_DIR$/modules/screen_authentication.js" />
         <option value="$PROJECT_DIR$/modules/user.js" />
-        <option value="$PROJECT_DIR$/modules/auth.js" />
-        <option value="$PROJECT_DIR$/modules/screen.js" />
         <option value="$PROJECT_DIR$/modules/advert.js" />
+        <option value="$PROJECT_DIR$/modules/screen.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/modules/auth.js" />
       </list>
     </option>
   </component>
@@ -141,8 +141,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2976" />
-    <option name="y" value="139" />
+    <option name="x" value="-45" />
+    <option name="y" value="132" />
     <option name="width" value="2477" />
     <option name="height" value="1248" />
   </component>
@@ -224,12 +224,12 @@
       <workItem from="1521552556754" duration="4233000" />
       <workItem from="1522320308649" duration="13292000" />
       <workItem from="1523308354417" duration="12929000" />
-      <workItem from="1523476064678" duration="32844000" />
+      <workItem from="1523476064678" duration="35053000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67007000" />
+    <option name="totallyTimeSpent" value="69216000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -241,8 +241,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2976" y="139" width="2477" height="1248" extended-state="0" />
-    <editor active="true" />
+    <frame x="-45" y="132" width="2477" height="1248" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18368183" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -447,40 +446,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1893">
+        <state relative-caret-position="544">
           <caret line="113" column="28" lean-forward="false" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="796">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="81" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="98" column="21" lean-forward="false" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/advert.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="122" column="37" lean-forward="false" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+        <state relative-caret-position="187">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="37" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/screen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+        <state relative-caret-position="357">
+          <caret line="78" column="6" lean-forward="true" selection-start-line="78" selection-start-column="6" selection-end-line="78" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="199" column="14" lean-forward="false" selection-start-line="199" selection-start-column="14" selection-end-line="199" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
           <folding />
         </state>
       </provider>
