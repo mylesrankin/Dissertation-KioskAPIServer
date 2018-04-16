@@ -61,13 +61,14 @@ app.get('/screens', function(req,res){
     })
 })
 
+
 /** Gets data of all screens owned by a specific user by Owner**/
 app.get('/screens/user/:Owner', function(req,res){
     screen.getScreensByUser(dbData,  req.params.Owner, function(result){
         res.status(200)
         res.json(result)
     })
-}) //
+})
 
 /** Gets data of all screen groups owned by a specific user by Owner**/
 app.get('/screens/groups/user/:Owner', function(req,res){
@@ -76,6 +77,31 @@ app.get('/screens/groups/user/:Owner', function(req,res){
         res.status(200)
         res.json(result)
     })
+})
+
+/** Gets data of all screen group tokens owned by a specific user by Owner**/
+app.get('/screen/tokens/user/:Owner', function(req,res){
+    user.getUserId(dbData, req.params.Owner, function(err, result) {
+        if(result[0] != null) {
+            auth.matchUserAuth(dbData, result[0].ID, req, function (err, result) {
+                console.log(result.status)
+                if (result.status === 'user-authorised') {
+                    screen.getScreenTokensByUser(dbData,  req.params.Owner, function(result){
+                        console.log(result)
+                        res.status(200)
+                        res.json(result)
+                    })
+                } else {
+                    res.status(400)
+                    res.json({status: 'user-unauthorised'})
+                }
+            })
+        }else{
+            res.status(401)
+            res.json({status:"Error: You are using a user that does not exist"})
+        }
+    })
+
 })
 
 /** Gets content for a given screen by request body hardware id **/
@@ -237,6 +263,75 @@ app.put('/screen/groups/:groupid', function(req, res){
             })
         }
     })
+})
+
+
+/** Route for creating a screen group auth required, only the proposed owner of the screen group can create it **/
+app.post('/screen/groups/', function(req, res){
+    user.getUserId(dbData, req.body['Owners'], function(err, result) {
+        auth.matchUserAuth(dbData, result[0].ID, req, function (err, result) {
+            console.log(result.status)
+            if (result.status === 'user-authorised') {
+                console.log('Incoming SG creation data')
+                if (req.body) {
+                    console.log('Attempting create sg (id=' + req.body['ID'] + ')')
+                    screen.createScreenGroup(dbData, req, function (err, result) {
+                        if (err) {
+                            res.status(400)
+                            console.log(err)
+                            res.json(err)
+                        } else {
+                            console.log('SG Created')
+                            res.status(200)
+                            res.json({status: 'SG Created'})
+                        }
+                    })
+                } else {
+                    console.log("Console Error - No advert obj provided?")
+                }
+            } else {
+                res.status(400)
+                res.json({status: 'user-unauthorised'})
+            }
+        })
+    })
+
+})
+
+/** Route for creating a screen group auth required, only the proposed owner of the screen group can create it **/
+app.post('/screen/token/', function(req, res){
+    user.getUserId(dbData, req.body['Owner'], function(err, result) {
+        if(result[0] != null) {
+            auth.matchUserAuth(dbData, result[0].ID, req, function (err, result) {
+                console.log(result.status)
+                if (result.status === 'user-authorised') {
+                    console.log('Incoming SGT creation data')
+                    if (req.body) {
+                        console.log('Attempting create sgt (id=' + req.body['ID'] + ')')
+                        screen.createScreenToken(dbData, req, function (err, result) {
+                            if (err) {
+                                res.status(400)
+                                res.json({status: 'token-exists'})
+                            } else {
+                                console.log('SGT Created')
+                                res.status(200)
+                                res.json({status: 'sgt-created'})
+                            }
+                        }) //
+                    } else {
+                        console.log("Console Error - No advert obj provided?")
+                    }
+                } else {
+                    res.status(400)
+                    res.json({status: 'user-unauthorised'})
+                }
+            })
+        }else{
+            res.status(401)
+            res.json({status:"Error: You are using a user that does not exist"})
+        }
+    })
+
 })
 
 // Response methods

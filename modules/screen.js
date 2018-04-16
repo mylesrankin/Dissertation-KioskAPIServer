@@ -7,7 +7,6 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
         console.log('Getting screen adverts of screen ID: ' + hardwareID);
         data.query(sql, function(err, result){
             if (err) throw err;
-			console.log("-----------------")
             if(result.length>0){
                 var sql = 'SELECT * FROM Adverts WHERE ID IN ' + result[0].Adverts
                 console.log(sql)
@@ -47,9 +46,46 @@ exports.getScreens = function(condetails, callback){
     });
 }
 
+exports.getScreenTokens = function(condetails, callback){
+    db.connect(condetails, function(err,data){
+        var sql = 'SELECT * FROM Screen_Tokens';
+        data.query(sql, function(err, result){
+            console.log(result.length)
+            if (err){
+                console.log(err)
+                callback(err)
+            }else{
+
+                if(result.length >0) {
+                    callback(result);
+                }else{
+                    callback({"status":"No-tokens"})
+                }
+            }
+        });
+        data.end()
+
+    });
+}
+
 exports.getScreenGroupsByUser = function(condetails, Owner, callback){
     db.connect(condetails, function(err,data){
         data.query('SELECT * FROM Screen_Groups WHERE Owners = ?', Owner, function(err, result){
+            if (err){
+                console.log(err)
+                callback({"notification":"An error occured"})
+            }else{
+                callback(result);
+            }
+        });
+        data.end()
+
+    });
+}
+
+exports.getScreenTokensByUser = function(condetails, Owner, callback){
+    db.connect(condetails, function(err,data){
+        data.query('SELECT * FROM Screen_Tokens WHERE Owner = ?', Owner, function(err, result){
             if (err){
                 console.log(err)
                 callback({"notification":"An error occured"})
@@ -112,22 +148,57 @@ exports.getScreensByUser = function(condetails, Owner, callback){
     });
 }
 
-exports.createAdvert = function(conDetails, req, callback){
+exports.createScreenGroup = function(conDetails, req, callback){
 	db.connect(conDetails, function(err, data){
 		if(err){
 			callback(err);
 			return;
 		}
-		var advert = {
-			username: req.body['ID'],
-			password: req.body['Owner'],
-			email: req.body['Content']
+		var screenGroup = {
+			Owners: req.body['Owners'],
+			Adverts: req.body['Adverts'],
 		};
-		data.query('INSERT INTO Adverts SET ?', advert, function(err,result){
-			callback(err,advert);
+		data.query('INSERT INTO Screen_Groups SET ?', screenGroup, function(err,result){
+			callback(err,screenGroup);
 		});
         data.end()
 	});
+};
+
+exports.createScreenToken = function(conDetails, req, callback){
+    db.connect(conDetails, function(err, data){
+        if(err){
+            callback(err);
+            return;
+        }
+        var screenGroup = {
+            Token: req.body['Token'],
+            Screen_Group: req.body['Screen_Group'],
+            Owner: req.body['Owner']
+        };
+        data.query('INSERT INTO Screen_Tokens SET ?', screenGroup, function(err,result){
+            callback(err,screenGroup);
+        });
+        data.end()
+    });
+};
+
+exports.createAdvert = function(conDetails, req, callback){
+    db.connect(conDetails, function(err, data){
+        if(err){
+            callback(err);
+            return;
+        }
+        var advert = {
+            username: req.body['ID'],
+            password: req.body['Owner'],
+            email: req.body['Content']
+        };
+        data.query('INSERT INTO Adverts SET ?', advert, function(err,result){
+            callback(err,advert);
+        });
+        data.end()
+    });
 };
 
 exports.heartbeat = function(conDetails, hardwareid, callback){
@@ -187,7 +258,6 @@ exports.destroy = function(conDetails, req, callback){
 		return;
 	}
 	var username = req.body['username'];
-
 	data.query('DELETE FROM Users WHERE username = ?', username, function(err, result){
 		callback(err,user);
 	});
