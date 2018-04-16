@@ -92,7 +92,18 @@ app.get('/screen/adverts', function(req,res){
             res.json(result)
         }
     })
+})
 
+app.post('/screen/heartbeat', function(req, res){
+    screen.heartbeat(dbData, req.headers['hardwareid'], function(err, result){
+        if(err){
+            res.status(400)
+            res.end('Error!')
+        }else{
+            res.status(200)
+            res.end('Heartbeat!')
+        }
+    })
 })
 
 /** Gets content for a given screen by request body hardware id **/

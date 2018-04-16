@@ -132,6 +132,24 @@ exports.createAdvert = function(conDetails, req, callback){
 	});
 };
 
+exports.heartbeat = function(conDetails, hardwareid, callback){
+    db.connect(conDetails, function(err,data){
+        if(err){
+            callback(err)
+            return
+        }
+        var screen = {
+            "Live": new Date()
+        }
+        data.query('UPDATE Screens SET ? WHERE Hardware_ID = "' + hardwareid+'"', screen, function(err, result){
+            console.log('Screen heartbeat! For HID: ' + hardwareid + ' at: ' + new Date())
+            if(err) throw err;
+            callback(err, result);
+        })
+        data.end();
+    })
+}
+
 // OLD METHODS BELOW
 exports.destroy = function(conDetails, req, callback){
 	if(err){
