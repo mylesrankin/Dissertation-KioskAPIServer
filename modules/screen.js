@@ -7,7 +7,6 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
         console.log('Getting screen adverts of screen ID: ' + hardwareID);
         data.query(sql, function(err, result){
             if (err) throw err;
-            console.log(result)
 			console.log("-----------------")
             if(result.length>0){
                 var sql = 'SELECT * FROM Adverts WHERE ID IN ' + result[0].Adverts
@@ -29,7 +28,6 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
 exports.getScreens = function(condetails, callback){
     db.connect(condetails, function(err,data){
         var sql = 'SELECT * FROM Screens';
-        console.log(sql)
         data.query(sql, function(err, result){
             console.log(result.length)
             if (err){
@@ -149,6 +147,38 @@ exports.heartbeat = function(conDetails, hardwareid, callback){
         data.end();
     })
 }
+
+exports.createResponse = function(conDetails, req, callback){
+    db.connect(conDetails, function(err, data){
+        if(err){
+            callback(err);
+            return;
+        }
+        var response = {
+            name: req.body['Name'],
+            Email: req.body['Email'],
+            OriginAdvertID: req.body['OriginAdvertID']
+        };
+        console.log(response)
+        data.query('INSERT INTO Responses SET ?', response, function(err,result){
+            callback(err,response);
+        });
+        data.end()
+    });
+};
+
+exports.incrementAdvertImpression = function(conDetails, req, callback){
+    db.connect(conDetails, function(err, data){
+        if(err){
+            callback(err);
+            return;
+        }
+        data.query('UPDATE Adverts SET Impressions = Impressions + 1 WHERE ID ='+req.body['advertid'], function(err,result){
+            callback(err,result);
+        });
+        data.end()
+    });
+};
 
 // OLD METHODS BELOW
 exports.destroy = function(conDetails, req, callback){

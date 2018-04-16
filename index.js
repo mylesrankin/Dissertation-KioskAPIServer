@@ -12,7 +12,7 @@ var db = require("./modules/db")
 var user = require("./modules/user")
 var advert = require("./modules/advert")
 var auth = require("./modules/auth")
-
+var os = require("os")
 //var auth = require('./modules/auth.js')
 var app = express()
 
@@ -26,7 +26,7 @@ const dbData = {
 
 var publicDir = path.join(__dirname, 'public')
 
-
+console.log(os.hostname())
 app.set('port', process.env.PORT || 3000)
 
 app.use(bodyParser.json()) // Parses json, multi-part (file), url-encoded
@@ -56,7 +56,6 @@ app.get('/test', function(req,res){
 /** Gets data of all screens on db **/
 app.get('/screens', function(req,res){
     screen.getScreens(dbData, function(result){
-        console.log(result)
         res.status(200)
         res.json(result)
     })
@@ -65,7 +64,6 @@ app.get('/screens', function(req,res){
 /** Gets data of all screens owned by a specific user by Owner**/
 app.get('/screens/user/:Owner', function(req,res){
     screen.getScreensByUser(dbData,  req.params.Owner, function(result){
-        console.log(result)
         res.status(200)
         res.json(result)
     })
@@ -241,6 +239,52 @@ app.put('/screen/groups/:groupid', function(req, res){
     })
 })
 
+// Response methods
+
+app.post('/response', function(req, res){
+    console.log('test')
+    auth.checkHID(dbData, req, function(err, result){
+        if(result.status === 'success'){
+            res.status(200)
+            screen.createResponse(dbData, req, function(err){
+                if(err){
+                    res.status(400)
+                    res.json(err)
+                }else{
+                    res.json({status:"Response recorded!"})
+                }
+            })
+        }else{
+            res.status(401)
+            res.json({status:"An error occured. HID Issue?"})
+        }
+    })
+})
+
+app.post('/screen/impression', function(req, res){
+    console.log('test')
+    if(req.body['advertid']) {
+        auth.checkHID(dbData, req, function (err, result) {
+            if (result.status === 'success') {
+                res.status(200)
+                screen.incrementAdvertImpression(dbData, req, function (err, result) {
+                    if (err) {
+                        res.status(400)
+                        res.json(err)
+                    } else {
+                        res.json({status: "Incremented advert"})
+                    }
+                })
+            } else {
+                res.status(401)
+                res.json({status: "An error occured. HID Issue?"})
+            }
+        })
+    }else{
+        res.status(400)
+        res.json({status: "No advert id supplied"})
+    }
+})
 
 
 // User methods

@@ -87,3 +87,34 @@ exports.destroyAuth = function(conDetails, token){
         data.end();
     })
 }
+
+/** Checks if hardware id is valid **/
+exports.checkHID = function(conDetails, req, callback) {
+    if (!req.headers.hardwareid) {
+        callback(null, {status: 'Hardware-id-missing'})
+        return;
+    } else {
+        db.connect(conDetails, function (err, data) {
+            if (err) {
+                console.log('Connection Error');
+                callback(err);
+                return;
+            }
+            var sql = 'SELECT * FROM Screens WHERE  Hardware_ID ="' + req.headers.hardwareid + '"';
+            data.query(sql, function (err, result) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                if (result && result.length > 0) {
+                    callback(null, {status: "success"});
+                }
+                else {
+                    callback(null, {status: "fail"})
+                }
+            })
+            data.end();
+        });
+
+    }
+}
