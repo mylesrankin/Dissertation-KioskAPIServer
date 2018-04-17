@@ -32,7 +32,7 @@ app.set('port', process.env.PORT || 3000)
 app.use(bodyParser.json()) // Parses json, multi-part (file), url-encoded
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, content-type, Data-Type, Accept, hardwareid, authtoken");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, content-type, Data-Type, Accept, hardwareid, authtoken, username");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
     next();
 });
@@ -58,6 +58,31 @@ app.get('/screens', function(req,res){
     screen.getScreens(dbData, function(result){
         res.status(200)
         res.json(result)
+    })
+})
+
+/** Allows client to register as a screen with a token**/
+
+app.post('/screens/:token', function(req, res){
+    screen.getSingleToken(dbData, req.params.token, function(err, result) {
+        console.log(result)
+        if (err == null){
+            screen.createScreen(dbData, req.headers.hardwareid, result, function(err, screen) {
+                if (err) {
+                    res.status(400)
+                    res.json({status:"Error: That hardwareid is already in use"})
+                } else {
+                    res.status(201)
+                    res.json({status:"Success! Screen registered"})
+                }
+            })
+        } else if(err == false) {
+            res.status(401)//
+            res.end('Token does not exist')
+        } else {
+            res.status(500)
+            res.json(err)
+        }//
     })
 })
 
@@ -315,9 +340,9 @@ app.post('/screen/token/', function(req, res){
                             } else {
                                 console.log('SGT Created')
                                 res.status(200)
-                                res.json({status: 'sgt-created'})
+                                res.json({status: 'Screen Token Created'})
                             }
-                        }) //
+                        })
                     } else {
                         console.log("Console Error - No advert obj provided?")
                     }
@@ -334,6 +359,42 @@ app.post('/screen/token/', function(req, res){
 
 })
 
+
+/** Route for deleting a screen group auth required, only the proposed owner of the screen group can delete it **/
+app.delete('/screen/token/:token', function(req, res){
+    console.log(req.body)
+    user.getUserId(dbData, req.headers.username, function(err, result) {
+        if(result[0] != null) {
+            auth.matchUserAuth(dbData, result[0].ID, req, function (err, result) {
+                console.log(result.status)
+                if (result.status === 'user-authorised') {
+                    console.log('Incoming SGT deletion data')
+                    if (req.body) {
+                        console.log('Attempting delete sgt (id=' + req.body['ID'] + ')')
+                        screen.destroyScreenToken(dbData, req, function (err, result) {
+                            if (err) {
+                                res.status(400)
+                                res.json({status: 'Error when deleting'})
+                            } else {
+                                res.status(200)
+                                res.json({status: 'Screen Token destroyed'})
+                            }
+                        })
+                    } else {
+                        console.log("Console Error - No token obj provided?")
+                    }
+                } else {
+                    res.status(400)
+                    res.json({status: 'user-unauthorised'})
+                }
+            })
+        }else{
+            res.status(401)
+            res.json({status:"Error: You are using a user that does not exist"})
+        }
+    })
+
+})
 // Response methods
 
 app.post('/response', function(req, res){
@@ -381,6 +442,18 @@ app.post('/screen/impression', function(req, res){
     }
 })
 
+app.post('/screen/check-hid', function(req, res){
+    screen.checkHID(dbData, req.headers.hardwareid, function(result){
+        console.log(result)
+        if(result == false){
+            res.status(401)
+            res.json({status:false})
+        }else{
+            res.status(200)
+            res.json({status:true})
+        }
+    })
+})
 
 // User methods
 

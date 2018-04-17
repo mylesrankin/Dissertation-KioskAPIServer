@@ -6,6 +6,7 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
         console.log(sql)
         console.log('Getting screen adverts of screen ID: ' + hardwareID);
         data.query(sql, function(err, result){
+            console.log(result)
             if (err) throw err;
             if(result.length>0){
                 var sql = 'SELECT * FROM Adverts WHERE ID IN ' + result[0].Adverts
@@ -19,9 +20,29 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
                 callback(false);
             }
         });
-
     });
 }
+
+exports.checkHID = function(condetails, hardwareID, callback){
+    console.log("Checking HID: "+hardwareID)
+    db.connect(condetails, function(err,data){
+        var sql = 'SELECT * FROM Screens WHERE Hardware_ID = "' + hardwareID + '"';
+        console.log(sql)
+        console.log('Getting screen adverts of screen ID: ' + hardwareID);
+        data.query(sql, function(err, result){
+            console.log(result)
+            if (err) throw err;
+            if(result.length>0){
+                console.log('Got screen data')
+                callback(true)
+            }else{
+                callback(false);
+            }
+        });
+        data.end()
+    });
+}
+
 
 
 exports.getScreens = function(condetails, callback){
@@ -67,6 +88,40 @@ exports.getScreenTokens = function(condetails, callback){
 
     });
 }
+
+exports.getSingleToken = function(condetails, token, callback){
+    db.connect(condetails, function(err,data){
+        var sql = 'SELECT * FROM Screen_Tokens WHERE Token = "'+token+'"';
+        data.query(sql, function(err, result){
+            console.log(sql)
+            console.log(result.length)
+            if(err){
+                callback(err)
+            }
+            if(result.length >0){
+                callback(null, result)
+            }else{
+                callback(false)
+            }
+        });
+        data.end()
+
+    });
+}
+
+exports.createScreen = function(condetails, hardwareid, result, callback){
+    db.connect(condetails, function(err,data) {
+        var screen = {
+            Hardware_ID: hardwareid,
+            Owner: result[0].Owner,
+            Screen_Group_ID: result[0].Screen_Group
+        };
+        data.query('INSERT INTO Screens SET ?', screen, function(err,result){
+            callback(err,screen);
+        });
+    })
+}
+
 
 exports.getScreenGroupsByUser = function(condetails, Owner, callback){
     db.connect(condetails, function(err,data){
@@ -181,6 +236,20 @@ exports.createScreenToken = function(conDetails, req, callback){
         });
         data.end()
     });
+};
+
+exports.destroyScreenToken = function(conDetails, req, callback){
+    db.connect(conDetails, function(err, data) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        var Token = req.params.token
+        data.query('DELETE FROM Screen_Tokens WHERE Token = ?', Token, function (err, result) {
+            callback(err, Token);
+        });
+        data.end()
+    })
 };
 
 exports.createAdvert = function(conDetails, req, callback){
