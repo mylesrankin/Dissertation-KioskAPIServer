@@ -129,6 +129,30 @@ app.get('/screen/tokens/user/:Owner', function(req,res){
 
 })
 
+/** Gets data of all screen group tokens owned by a specific user by Owner**/
+app.get('/screen/advert/:id', function(req,res){
+    user.getUserId(dbData, req.headers.username, function(err, result) {
+        console.log(result)
+        if(result[0] != null) {
+            auth.matchUserAuth(dbData, result[0].ID, req, function (err, result) {
+                console.log(result.status)
+                if (result.status === 'user-authorised') {
+                    advert.getAdvertById(dbData,  req.params.id, function(err, result){
+                        res.status(200)
+                        res.json(result)
+                    }) //
+                } else {
+                    res.status(400)
+                    res.json({status: 'user-unauthorised'})
+                }
+            })
+        }else{
+            res.status(401)
+            res.json({status:"Error: You are using a user that does not exist"})
+        }
+    })
+})
+
 /** Gets content for a given screen by request body hardware id **/
 app.get('/screen/adverts', function(req,res){
     var HID = req.headers['hardwareid']
@@ -248,6 +272,44 @@ app.put('/screen/adverts/:advertid', function(req, res){
         }
     })
 })
+
+/** Route for updating advert based on provided id param [PRIVATE API] auth required, only the owner of the review can update it **/
+app.delete('/screen/adverts/:advertid', function(req, res){
+    console.log(req.body)
+    advert.getAdvertById(dbData, req.params.advertid, function(err, result){
+        if(!result){
+            console.log("Error: Advert with id="+req.params.advertid+" does not exist")
+            res.status(400)
+            res.json({status: "Error: Advert with id="+req.params.advertid+" does not exist"})
+        }else{
+            console.log('Getting userid from advert owner: '+result[0].Owner)
+            user.getUserId(dbData, result[0].Owner, function(err, result){
+                auth.matchUserAuth(dbData, result[0].ID, req, function(err, result){
+                    console.log(result.status)
+                    if(result.status === 'user-authorised'){
+                        console.log('Attempting to delete advert: ' + req.params.advertid)
+                        advert.destroy(dbData, req.params.advertid, function(err, result){
+                            if(err){
+                                res.status(400)
+                                console.log(err)
+                                res.json(err)
+                            }
+                            if(result) {
+                                console.log('Advert deleted')
+                                res.status(200)
+                                res.json(result)
+                            }
+                        })
+                    }else{
+                        res.status(400)
+                        res.json({status: 'user-unauthorised'})
+                    }
+                })
+            })
+        }
+    })
+})
+
 
 /** Route for updating screen group based on provided id param auth required, only the owner of the screen group can update it **/
 app.put('/screen/groups/:groupid', function(req, res){
@@ -395,7 +457,30 @@ app.delete('/screen/token/:token', function(req, res){
     })
 
 })
-// Response methods
+// Screen Response methods
+
+app.get('/responses/:id', function(req, res){
+    user.getUserId(dbData, req.headers.username, function(err, result) {
+        console.log(result)
+        if(result[0] != null) {
+            auth.matchUserAuth(dbData, result[0].ID, req, function (err, result) {
+                console.log(result.status)
+                if (result.status === 'user-authorised') {
+                    advert.getAdvertResponses(dbData,  req.params.id, function(err, result){
+                        res.status(200)
+                        res.json(result)
+                    })
+                } else {
+                    res.status(400)
+                    res.json({status: 'user-unauthorised'})
+                }
+            })
+        }else{
+            res.status(401)
+            res.json({status:"Error: You are using a user that does not exist"})
+        }
+    })
+})
 
 app.post('/response', function(req, res){
     console.log('test')

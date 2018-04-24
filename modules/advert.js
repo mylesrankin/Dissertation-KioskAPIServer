@@ -37,11 +37,28 @@ exports.update = function(conDetails, advertId, advertObj, callback){
     })
 };
 
+exports.getAdvertResponses = function(condetails, advertID, callback){
+    db.connect(condetails, function(err,data){
+        data.query('SELECT * FROM Responses WHERE OriginAdvertID = ?', advertID, function(err, result){
+            if (err){
+                console.log(err,null)
+                callback({"notification":"An error occured"})
+            }else{
+                callback(null,result);
+            }
+        });
+        data.end()
+
+    });
+}
+
+
 /** Get a advert of a specific id  provided in params **/
 exports.getAdvertById = function(condetails, advertid, callback){
     console.log("Getting advert by id="+advertid)
     db.connect(condetails, function(err, data){
-        var sql = 'SELECT * FROM Adverts WHERE ID="' + advertid + '"'
+        var sql = 'SELECT * FROM Adverts WHERE ID = ' + advertid
+        console.log(sql)
         data.query(sql, function(err, result){
             if(err){
                 console.log(err)
@@ -60,21 +77,16 @@ exports.getAdvertById = function(condetails, advertid, callback){
 /** Deletes a review from database with id provided **/
 exports.destroy = function(conDetails, id, callback){
     db.connect(conDetails, function(err,data){
-        data.query('SELECT drug_name FROM Reviews WHERE id ="'+id+'"', function(err, result){
-            data.query('UPDATE Drugs SET totalreviews = totalreviews-1 WHERE name="'+result[0].drug_name+'"', function(err, result){
-                console.log('Attempting to delete review (id='+id+')')
-                data.query('DELETE FROM Reviews WHERE id = ?', id, function(err, result){
-                    if(err){
-                        console.log(err)
-                    }else{
-                        console.log("Deleted reivew (id="+id+")")
-                    }
-                    data.end();
-                });
+        data.query('DELETE FROM Adverts WHERE ID = ?', id, function(err, result){
+            if(err){
+                console.log(err)
+            }else{
+                console.log("Deleted advert (id="+id+")")
+                callback(null, {status: "Deleted advert (id="+id+")"} )
+            }
+            data.end();
+        });
 
-            })
-            callback(err);
-        })
     });
 
 };
