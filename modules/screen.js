@@ -203,6 +203,21 @@ exports.getScreensByUser = function(condetails, Owner, callback){
     });
 }
 
+exports.getScreenByHID = function(condetails, HID, callback){
+    db.connect(condetails, function(err,data){
+        data.query('SELECT * FROM Screens WHERE Hardware_ID =  "'+HID+'"', function(err, result){
+            if (err){
+                console.log(err)
+                callback({"notification":"An error occured"})
+            }else{
+                callback(null, result);
+            }
+        });
+        data.end()
+
+    });
+}
+
 exports.createScreenGroup = function(conDetails, req, callback){
 	db.connect(conDetails, function(err, data){
 		if(err){
@@ -210,8 +225,9 @@ exports.createScreenGroup = function(conDetails, req, callback){
 			return;
 		}
 		var screenGroup = {
-			Owners: req.body['Owners'],
-			Adverts: req.body['Adverts'],
+		    Name : req.body['Name'],
+			Owners: req.body['Owners']
+			//Adverts: req.body['Adverts'],
 		};
 		data.query('INSERT INTO Screen_Groups SET ?', screenGroup, function(err,result){
 			callback(err,screenGroup);
@@ -219,6 +235,25 @@ exports.createScreenGroup = function(conDetails, req, callback){
         data.end()
 	});
 };
+
+/** Deletes a review from database with id provided **/
+exports.destroyScreenGroup = function(conDetails, id, callback){
+    db.connect(conDetails, function(err,data){
+        data.query('DELETE FROM Screen_Groups WHERE ID = ?', id, function(err, result){
+            console.log(result)
+            if(err){
+                console.log(err)
+            }else{
+                console.log("Deleted screen group (id="+id+")")
+                callback(null, {status: "Deleted screen group (id="+id+")"} )
+            }
+            data.end();
+        });
+
+    });
+
+};
+
 
 exports.createScreenToken = function(conDetails, req, callback){
     db.connect(conDetails, function(err, data){
@@ -320,17 +355,21 @@ exports.incrementAdvertImpression = function(conDetails, req, callback){
     });
 };
 
-// OLD METHODS BELOW
-exports.destroy = function(conDetails, req, callback){
-	if(err){
-		callback(err);
-		return;
-	}
-	var username = req.body['username'];
-	data.query('DELETE FROM Users WHERE username = ?', username, function(err, result){
-		callback(err,user);
-	});
-    data.end()
+exports.destroy = function(conDetails, hid, callback){
+    db.connect(conDetails, function(err, data) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        data.query('DELETE FROM Screens WHERE Hardware_ID = ?', hid, function (err, result) {
+            if(err){
+                callback({status:"Error"})
+            }else{
+                callback({status:"Success! Deleted screen"})
+            }
+        });
+        data.end()
+    })
 };
 
 

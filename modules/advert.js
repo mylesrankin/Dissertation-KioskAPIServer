@@ -9,7 +9,7 @@ exports.create = function(conDetails, req, callback){
         }
 
         var advert = {
-            Owner: req.body['username'],
+            Owner: req.headers['username'],
             Content: JSON.stringify(req.body['Content'])
         };
 

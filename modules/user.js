@@ -110,6 +110,7 @@ exports.getUser = function(condetails, username, callback){
 
 /**  Gets userid of a provided username if they exist **/
 exports.getUserId = function(condetails, username, callback){
+    console.log(username)
     db.connect(condetails, function(err,data){
         var sql = 'SELECT ID FROM Users WHERE username = "' + username + '"';
         console.log(sql)

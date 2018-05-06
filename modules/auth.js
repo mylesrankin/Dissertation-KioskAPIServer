@@ -39,7 +39,6 @@ exports.matchUserAuth = function(conDetails, targetId, req, callback){
     }else{
         db.connect(conDetails, function(err, data){
             var usr = req.headers.User_ID
-
             console.log('Checking Auth_Token: '+req.headers.authtoken)
             var sql = 'SELECT * FROM Authentications WHERE Auth_Token ="'+ req.headers.authtoken +'" AND User_ID = "'+ targetId +'"';
             data.query(sql, function(err, result){

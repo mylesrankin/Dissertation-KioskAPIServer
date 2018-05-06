@@ -2,6 +2,7 @@
   "name": "kioskapiserver",
   "version": "1.0.0",
   "dependencies": {
+    "api-doc-generator": "0.0.2",
     "body-parser": "^1.18.2",
     "ee-machine-id": "^0.1.1",
     "express": "^4.16.3",
@@ -16,7 +17,9 @@
     "sha256": "^0.2.0"
   },
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine": "^3.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
