@@ -2,18 +2,86 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4534183-191f-4096-92e5-5fff63fae977" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/unittests/api_spec.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
-      <change beforePath="$PROJECT_DIR$/initial.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/modules/advert.js" afterPath="$PROJECT_DIR$/modules/advert.js" />
-      <change beforePath="$PROJECT_DIR$/modules/auth - Copy.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/modules/auth.js" afterPath="$PROJECT_DIR$/modules/auth.js" />
-      <change beforePath="$PROJECT_DIR$/modules/old/dbodl (1).js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/modules/old/dbodl (2).js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/modules/screen.js" afterPath="$PROJECT_DIR$/modules/screen.js" />
-      <change beforePath="$PROJECT_DIR$/modules/user.js" afterPath="$PROJECT_DIR$/modules/user.js" />
-      <change beforePath="$PROJECT_DIR$/package - Copy.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jasmine" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jasmine.cmd" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fs.realpath/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fs.realpath/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fs.realpath/index.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fs.realpath/old.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/fs.realpath/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/glob/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/glob/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/glob/changelog.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/glob/common.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/glob/glob.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/glob/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/glob/sync.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inflight/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inflight/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inflight/inflight.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/inflight/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/.editorconfig" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/.github/CONTRIBUTING.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/.github/ISSUE_TEMPLATE.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/.github/PULL_REQUEST_TEMPLATE.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/.npmignore" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/.ruby-version" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/CODE_OF_CONDUCT.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/MANIFEST.in" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/MIT.LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/RELEASE.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/bower.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/images/jasmine-horizontal.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/images/jasmine-horizontal.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/images/jasmine_favicon.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/jasmine_core.egg-info/PKG-INFO" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/jasmine_core.egg-info/SOURCES.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/jasmine_core.egg-info/dependency_links.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/jasmine_core.egg-info/requires.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/jasmine_core.egg-info/top_level.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/boot.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/node_example/lib/jasmine_examples/Player.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/node_example/lib/jasmine_examples/Song.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/node_example/spec/helpers/jasmine_examples/SpecHelper.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/node_example/spec/jasmine_examples/PlayerSpec.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/spec/PlayerSpec.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/spec/SpecHelper.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/src/Player.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/example/src/Song.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/jasmine.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/jasmine.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/json2.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/lib/jasmine-core/node_boot.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine-core/requirements.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/.editorconfig" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/.travis.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/Gruntfile.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/MIT.LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/bin/jasmine.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/lib/command.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/lib/examples/jasmine.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/lib/filters/console_spec_filter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/lib/jasmine.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/lib/reporters/completion_reporter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/lib/reporters/console_reporter.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jasmine/tasks/jasmine.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/once/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/once/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/once/once.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/once/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/wrappy/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/wrappy/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/wrappy/package.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/node_modules/wrappy/wrappy.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,14 +95,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5526814">
+    <splitter split-orientation="horizontal" split-proportion="0.59980714">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/index.js">
+          <file leaf-file-name="api_spec.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/unittests/api_spec.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="722">
-                  <caret line="90" column="23" lean-forward="false" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
+                <state relative-caret-position="620">
+                  <caret line="412" column="31" lean-forward="true" selection-start-line="412" selection-start-column="31" selection-end-line="412" selection-end-column="31" />
                   <folding />
                 </state>
               </provider>
@@ -43,8 +111,8 @@
           <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
-                  <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+                <state relative-caret-position="493">
+                  <caret line="29" column="48" lean-forward="false" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
@@ -54,6 +122,16 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="184">
+                  <caret line="233" column="23" lean-forward="false" selection-start-line="233" selection-start-column="9" selection-end-line="233" selection-end-column="23" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="db.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/modules/db.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -67,8 +145,8 @@
           <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/modules/auth.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="799">
-                  <caret line="47" column="17" lean-forward="false" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+                <state relative-caret-position="286">
+                  <caret line="59" column="11" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="11" />
                   <folding />
                 </state>
               </provider>
@@ -87,14 +165,14 @@
           <file leaf-file-name="screen.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/modules/screen.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6341">
-                  <caret line="373" column="0" lean-forward="false" selection-start-line="373" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
+                <state relative-caret-position="4046">
+                  <caret line="238" column="1" lean-forward="false" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="advert.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="advert.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/modules/advert.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="238">
@@ -107,6 +185,13 @@
         </leaf>
       </split-second>
     </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -124,6 +209,11 @@
       <find>advert</find>
       <find>del</find>
       <find>os</find>
+      <find>/screens/user</find>
+      <find>/screens/group</find>
+      <find>screen/adverts</find>
+      <find>screen/groups</find>
+      <find>/screen/advert</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -141,7 +231,9 @@
         <option value="$PROJECT_DIR$/modules/auth.js" />
         <option value="$PROJECT_DIR$/modules/screen.js" />
         <option value="$PROJECT_DIR$/modules/advert.js" />
+        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/unittests/api_spec.js" />
       </list>
     </option>
   </component>
@@ -163,7 +255,7 @@
     <option name="height" value="1416" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -176,7 +268,21 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Dissertation-KioskAPIServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dissertation-KioskAPIServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -225,12 +331,12 @@
       <workItem from="1523476064678" duration="36021000" />
       <workItem from="1523821425921" duration="30317000" />
       <workItem from="1524231657329" duration="32391000" />
-      <workItem from="1525629496841" duration="106000" />
+      <workItem from="1525629496841" duration="9036000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132998000" />
+    <option name="totallyTimeSpent" value="141928000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -245,7 +351,7 @@
     <frame x="2552" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18315618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18282112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27143982" sideWeight="0.5047771" order="7" side_tool="true" content_ui="tabs" />
@@ -296,14 +402,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -611,14 +709,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/user_authentication.js" />
     <entry file="file://$PROJECT_DIR$/modules/screen_authentication.js" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -637,22 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/screen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6341">
-          <caret line="373" column="0" lean-forward="false" selection-start-line="373" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="17" lean-forward="false" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/advert.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -661,10 +735,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="59" column="11" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/screen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4046">
+          <caret line="238" column="1" lean-forward="false" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="48" lean-forward="false" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="90" column="23" lean-forward="false" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
+        <state relative-caret-position="184">
+          <caret line="233" column="23" lean-forward="false" selection-start-line="233" selection-start-column="9" selection-end-line="233" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unittests/api_spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="412" column="31" lean-forward="true" selection-start-line="412" selection-start-column="31" selection-end-line="412" selection-end-column="31" />
           <folding />
         </state>
       </provider>

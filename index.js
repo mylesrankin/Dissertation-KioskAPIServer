@@ -52,7 +52,7 @@ app.get('/test', function(req,res){
 
 // Screen/Advert Methods
 
-/** Gets data of all screens on db **/
+/** Gets data of all screens on db, legacy route - not used **/
 app.get('/screens', function(req,res){
     screen.getScreens(dbData, function(result){
         res.status(200)
@@ -461,7 +461,9 @@ app.post('/screen/groups/', function(req, res){
 
 /** Route for creating a screen token (auth required), only the proposed owner of the screen token can create it **/
 app.post('/screen/token/', function(req, res){
+    console.log("SGT Creation Attempt")
     user.getUserId(dbData, req.body['Owner'], function(err, result) {
+        console.log(result)
         if(result[0] != null) {
             auth.matchUserAuth(dbData, result[0].ID, req, function (err, result) {
                 console.log(result.status)
@@ -590,6 +592,7 @@ app.post('/screen/impression', function(req, res){
                         res.status(400)
                         res.json(err)
                     } else {
+                        res.status(201)
                         res.json({status: "Incremented advert"})
                     }
                 })
