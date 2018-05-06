@@ -109,7 +109,7 @@ describe("API GET Routes", function() {
         });
     });
 
-    describe("Gets the adverts of a valid user", function() {
+    describe("Getting the adverts of a valid user", function() {
         it("returns status code 200", function(done) {
             request.get(base_url+"useradverts/System", function(error, response, body) {
                 expect(response.statusCode).toBe(200);
@@ -118,7 +118,7 @@ describe("API GET Routes", function() {
         });
     });
 
-    describe("Gets the adverts of an invalid user", function() {
+    describe("Getting the adverts of an invalid user", function() {
         it("returns status code 400", function(done) {
             request.get(base_url+"useradverts/invalidusername", function(error, response, body) {
                 expect(response.statusCode).toBe(400);
@@ -158,7 +158,7 @@ describe("API GET Routes", function() {
 
 describe("API POST Routes", function() {
 
-    describe("creating an Advert with valid auth", function() {
+    describe("Creating an Advert with valid auth", function() {
         it("returns status code 201", function(done) {
             request.post(base_url+"screen/adverts",
                 {
@@ -178,7 +178,7 @@ describe("API POST Routes", function() {
         });
     });
 
-    describe("Sending screen heartbeat with valid hardwareid", function() {
+    describe("Sending screen heartbeat with valid hardware id", function() {
         it("returns status code 200", function(done) {
             request.post(base_url+"screen/heartbeat",
                 {
@@ -193,7 +193,7 @@ describe("API POST Routes", function() {
         });
     });
 
-    describe("posting screen token for authorisation with a token that exists and new hardwareid", function() {
+    describe("posting screen token for authorisation with a token that exists and new hardware id", function() {
         it("returns status code 201", function(done) {
             request.post(base_url+"screens/aaa-aaa-aaa",
                 {
