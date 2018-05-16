@@ -1,4 +1,4 @@
-// DB Module
+// DB Module by Myles Rankin
 var mysql = require("mysql")
 exports.connect = function(conDetails, callback){
 

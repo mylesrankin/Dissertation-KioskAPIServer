@@ -1,7 +1,8 @@
+// *Some* methods below are by Myles Rankin - 'Mediview' 304CEM Project
 var db = require("./db")
 var sha256 = require('sha256')
 
-/** Creates a user **/
+/** Creates a user by Myles Rankin - 'Mediview' 304CEM Project **/
 exports.create = function(conDetails, userObj, callback){
     db.connect(conDetails, function(err, data){
         if(err){
@@ -17,6 +18,7 @@ exports.create = function(conDetails, userObj, callback){
 /**
  * Updates a user of provided id and updated information within a userObj (Object)
  * @param userobj uses sha256 to ensure no plaintext passwords are stored on updates
+ * by Myles Rankin - 'Mediview' 304CEM Project
  */
 exports.update = function(conDetails, userid, userObj, callback){
     db.connect(conDetails, function(err, data){
@@ -136,26 +138,6 @@ exports.getUserSalt = function(condetails, userid, callback){
                 callback(null, result)
             }else{
                 callback(null, false)
-            }
-        });
-        data.end();
-    })
-}
-
-/**  Gets the most recent users based on the limit provided. I.e. limit=5 will give 5 most recent users**/
-exports.getRecentUsers = function(condetails, limit, callback){
-    var limit = Math.round(limit)
-    db.connect(condetails, function(err, data){
-        if(err){
-            console.log(err)
-            return;
-        }
-        var sql = 'SELECT userid, username, email FROM Users ORDER BY userid DESC LIMIT '+limit;
-        data.query(sql, function(err, result){
-            if(err){
-                callback(err)
-            }else{
-                callback(null, result)
             }
         });
         data.end();

@@ -1,5 +1,6 @@
 var db = require("./db")
 
+/** Gets screen adverts of of a given screen by HID **/
 exports.getScreenAdverts = function(condetails, hardwareID, callback){
     db.connect(condetails, function(err,data){
         var sql = 'SELECT * FROM Screen_Groups WHERE ID = (SELECT ID FROM Screens WHERE Hardware_ID = "' + hardwareID + '")';
@@ -22,7 +23,7 @@ exports.getScreenAdverts = function(condetails, hardwareID, callback){
         });
     });
 }
-
+/** Checks if a HID is valid or not **/
 exports.checkHID = function(condetails, hardwareID, callback){
     console.log("Checking HID: "+hardwareID)
     db.connect(condetails, function(err,data){
@@ -42,9 +43,7 @@ exports.checkHID = function(condetails, hardwareID, callback){
         data.end()
     });
 }
-
-
-
+/** Gets all screens data **/
 exports.getScreens = function(condetails, callback){
     db.connect(condetails, function(err,data){
         var sql = 'SELECT * FROM Screens';
@@ -66,7 +65,7 @@ exports.getScreens = function(condetails, callback){
 
     });
 }
-
+/** Gets all screen tokens **/
 exports.getScreenTokens = function(condetails, callback){
     db.connect(condetails, function(err,data){
         var sql = 'SELECT * FROM Screen_Tokens';
@@ -88,7 +87,7 @@ exports.getScreenTokens = function(condetails, callback){
 
     });
 }
-
+/** Gets single token data based on provided token id **/
 exports.getSingleToken = function(condetails, token, callback){
     db.connect(condetails, function(err,data){
         var sql = 'SELECT * FROM Screen_Tokens WHERE Token = "'+token+'"';
@@ -108,7 +107,7 @@ exports.getSingleToken = function(condetails, token, callback){
 
     });
 }
-
+/** Creates a new screen in db **/
 exports.createScreen = function(condetails, hardwareid, result, callback){
     db.connect(condetails, function(err,data) {
         var screen = {
@@ -121,8 +120,7 @@ exports.createScreen = function(condetails, hardwareid, result, callback){
         });
     })
 }
-
-
+/** Get screen groups by supplied username **/
 exports.getScreenGroupsByUser = function(condetails, Owner, callback){
     db.connect(condetails, function(err,data){
         data.query('SELECT * FROM Screen_Groups WHERE Owners = ?', Owner, function(err, result){
@@ -137,7 +135,7 @@ exports.getScreenGroupsByUser = function(condetails, Owner, callback){
 
     });
 }
-
+/** Get screen tokens by supplied username  **/
 exports.getScreenTokensByUser = function(condetails, Owner, callback){
     db.connect(condetails, function(err,data){
         data.query('SELECT * FROM Screen_Tokens WHERE Owner = ?', Owner, function(err, result){
@@ -186,8 +184,7 @@ exports.getScreenGroupByID = function(condetails, groupid, callback){
         data.end();
     })
 }
-
-
+/** Get screens by username **/
 exports.getScreensByUser = function(condetails, Owner, callback){
     db.connect(condetails, function(err,data){
         data.query('SELECT * FROM Screens WHERE Owner = ?', Owner, function(err, result){
@@ -202,7 +199,7 @@ exports.getScreensByUser = function(condetails, Owner, callback){
 
     });
 }
-
+/** Get screen by hardwareid **/
 exports.getScreenByHID = function(condetails, HID, callback){
     db.connect(condetails, function(err,data){
         data.query('SELECT * FROM Screens WHERE Hardware_ID =  "'+HID+'"', function(err, result){
@@ -217,7 +214,7 @@ exports.getScreenByHID = function(condetails, HID, callback){
 
     });
 }
-
+/** Creates a screen group **/
 exports.createScreenGroup = function(conDetails, req, callback){
 	db.connect(conDetails, function(err, data){
 		if(err){
@@ -254,7 +251,7 @@ exports.destroyScreenGroup = function(conDetails, id, callback){
 
 };
 
-
+/** Creates a screen token **/
 exports.createScreenToken = function(conDetails, req, callback){
     db.connect(conDetails, function(err, data){
         if(err){
@@ -272,7 +269,7 @@ exports.createScreenToken = function(conDetails, req, callback){
         data.end()
     });
 };
-
+/** Destroys a screen token from db **/
 exports.destroyScreenToken = function(conDetails, req, callback){
     db.connect(conDetails, function(err, data) {
         if (err) {
@@ -286,7 +283,7 @@ exports.destroyScreenToken = function(conDetails, req, callback){
         data.end()
     })
 };
-
+/** Creates an advert **/
 exports.createAdvert = function(conDetails, req, callback){
     db.connect(conDetails, function(err, data){
         if(err){
@@ -304,7 +301,7 @@ exports.createAdvert = function(conDetails, req, callback){
         data.end()
     });
 };
-
+/** Generates a screen heartbeat in db **/
 exports.heartbeat = function(conDetails, hardwareid, callback){
     db.connect(conDetails, function(err,data){
         if(err){
@@ -322,7 +319,7 @@ exports.heartbeat = function(conDetails, hardwareid, callback){
         data.end();
     })
 }
-
+/** Creates a screen response in db **/
 exports.createResponse = function(conDetails, req, callback){
     db.connect(conDetails, function(err, data){
         if(err){
@@ -341,7 +338,7 @@ exports.createResponse = function(conDetails, req, callback){
         data.end()
     });
 };
-
+/** increments advert impression in db **/
 exports.incrementAdvertImpression = function(conDetails, req, callback){
     db.connect(conDetails, function(err, data){
         if(err){
@@ -354,7 +351,7 @@ exports.incrementAdvertImpression = function(conDetails, req, callback){
         data.end()
     });
 };
-
+/** destroys a screen **/
 exports.destroy = function(conDetails, hid, callback){
     db.connect(conDetails, function(err, data) {
         if (err) {

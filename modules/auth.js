@@ -31,7 +31,7 @@ exports.checkAuth = function(conDetails, req, callback){
     }
 }
 
-/** Matches a users request authentication with the targetid auth owner to ensure they are allowed do anything to it **/
+/** Matches a users request authentication with the targetid auth owner to ensure they are allowed do anything to it by Myles Rankin - 'Mediview' 304CEM Project **/
 exports.matchUserAuth = function(conDetails, targetId, req, callback){
     console.log(req.headers.authtoken)
     if(!req.headers.authtoken){
@@ -57,7 +57,7 @@ exports.matchUserAuth = function(conDetails, targetId, req, callback){
     }
 }
 
-/** Creates a authentication in database **/
+/** Creates a authentication in database by Myles Rankin - 'Mediview' 304CEM Project **/
 exports.createAuth = function(conDetails, User_ID, token){
     db.connect(conDetails, function(err, data){
         var tempauth = {
@@ -74,7 +74,7 @@ exports.createAuth = function(conDetails, User_ID, token){
     })
 }
 
-/** Deletes authentication from database **/
+/** Deletes authentication from database by Myles Rankin - 'Mediview' 304CEM Project **/
 exports.destroyAuth = function(conDetails, token){
     db.connect(conDetails, function(err,data){
         var sql = "DELETE FROM Authentications WHERE Auth_Token ='" + token + "'";

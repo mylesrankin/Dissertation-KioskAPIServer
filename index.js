@@ -668,7 +668,7 @@ app.post('/user', function(req, res){
     });
 })
 
-/** Route for allowing users to login **/
+/** Route for allowing users to login, by Myles Rankin - 'Mediview' 304CEM Project **/
 app.post('/user/login', function(req,res){
     var token = new String(user+(Date.now() / 1000 | 0)).hashCode();
     db.connect(dbData, function(err, data){
@@ -706,7 +706,7 @@ app.post('/user/login', function(req,res){
     });
 })
 
-/** Route for allowing users to logout **/
+/** Route for allowing users to logout by Myles Rankin - 'Mediview' 304CEM Project **/
 app.delete('/user/logout', function(req,res){
     console.log(req.headers['authtoken'])
     if(req.headers['authtoken']){
